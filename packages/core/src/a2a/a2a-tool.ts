@@ -139,7 +139,12 @@ export function extractMessageText(message: Message | undefined): string {
     return files.join('\n');
   }
 
-  return '[unknown message part]';
+  if (message.parts.length > 0) {
+    const responses = message.parts.map((part) => `${JSON.stringify(part)}`);
+    return responses.join('\n');
+  }
+
+  return '';
 }
 
 export function extractTaskText(task: Task): string {

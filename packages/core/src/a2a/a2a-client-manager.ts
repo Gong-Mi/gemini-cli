@@ -208,7 +208,11 @@ export class A2AClientManager {
         messageId: uuidv4(),
         parts: [{ kind: 'text', text: message }],
       },
+      configuration: {
+        blocking: true
+      }
     };
+
 
     return client.sendMessage(messageParams);
   }
