@@ -41,6 +41,7 @@ import { GitService } from '../services/gitService.js';
 import {
   SkillDiscoveryService,
   type SkillMetadata,
+  type SkillContent,
 } from '../services/skillDiscoveryService.js';
 import type { TelemetryTarget } from '../telemetry/index.js';
 import {
@@ -1259,7 +1260,7 @@ export class Config {
     return this.skills;
   }
 
-  async getSkillContent(name: string): Promise<SkillMetadata | null> {
+  async getSkillContent(name: string): Promise<SkillContent | null> {
     const skill = this.skills.find((s) => s.name === name);
     if (!skill || !this.skillDiscoveryService) {
       return null;

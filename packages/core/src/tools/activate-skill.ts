@@ -76,7 +76,7 @@ export class ActivateSkillTool extends BaseDeclarativeTool<
       ActivateSkillTool.Name,
       'ActivateSkill',
       "Activates a specialized agent skill by name. Once activated, the skill's full instructions and rules are permanently added to your system prompt for the remainder of the session. Use this when you identify a task that matches a skill's description.",
-      Kind.Action,
+      Kind.Other,
       {
         properties: {
           name: {
