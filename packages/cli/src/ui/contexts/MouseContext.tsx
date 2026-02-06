@@ -166,6 +166,20 @@ export function MouseProvider({
         }
 
         if (isIncompleteMouseSequence(mouseBuffer)) {
+          // If there's another ESC later in the buffer, the current incomplete
+          // sequence is likely malformed or truncated. Discard the first part
+          // to try parsing the next potential sequence.
+          const nextEsc = mouseBuffer.indexOf(ESC, 1);
+          if (nextEsc !== -1) {
+            if (debugKeystrokeLogging) {
+              debugLogger.log(
+                '[DEBUG] Discarding incomplete/malformed mouse sequence:',
+                JSON.stringify(mouseBuffer.slice(0, nextEsc)),
+              );
+            }
+            mouseBuffer = mouseBuffer.slice(nextEsc);
+            continue;
+          }
           break; // Wait for more data
         }
 
